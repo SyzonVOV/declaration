@@ -1,9 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
+import Container from '@mui/material/Container';
 import './App.css';
+import { ContentTable } from './components/ContentTable';
+import { ContentInput } from './components/ContentInput';
 
-function App() {
+/* function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -53,6 +56,14 @@ function App() {
       </header>
     </div>
   );
-}
+} */
 
+function App() {
+  return (
+    <Container maxWidth="md">
+      <ContentInput />
+      <ContentTable />
+    </Container>
+  )
+}
 export default App;
