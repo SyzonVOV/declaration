@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useAppSelector } from "../app/hooks";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -6,51 +7,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
-const initialNames = [
-    "БАШИНСЬКИЙ Володимир Георгійович",
-    "ЖИРНИЙ Володимир Анатолійович",
-    "ДМИТРІЄВ Володимир Анатолійович",
-    "ЛАМПІК Михайло Михайлович",
-    "КОРЗУН Світлана Миколаївна"
-];
-
-interface IPerson {
-    name: string
-    surname: string
-    fathername: string
-}
-
-function removeExtraSpaces(string: string) {
-    return string.replace(/\s+/g, ' ').trim()
-}
-
-function createPersonObject(string: string) {
-    let personArr = string.split(' ');
-    return { 'surname': personArr[0], 'name': personArr[1], 'fathername': personArr[2] }
-}
-
-function reducer(prev: Array<IPerson>, curr: string) {
-    let createdObj = createPersonObject(removeExtraSpaces(curr))
-    return [...prev, createdObj]
-}
-const initialNamesParced = initialNames.reduce(reducer, [] as Array<IPerson>)
-
-/* function createData(
-    name: string,
-    calories: number,
-    fat: number,
-    carbs: number,
-    protein: number,
-) {
-    return { name, calories, fat, carbs, protein };
-} 
-
-const rows = [
-    ...initialNamesParced
-]; */
+import { RootState } from '../app/store';
 
 export function ContentTable(): JSX.Element {
+    const initialNamesParced = useAppSelector((state: RootState) => state.member.members)
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
