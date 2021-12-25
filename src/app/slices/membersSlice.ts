@@ -1,21 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { createPersonObject as createMemberObject, removeExtraSpaces } from '../../helpers/helpers'
+import { createPersonObject as createMemberObject, IMember, removeExtraSpaces } from '../../helpers/helpers'
 
 // Define a type for the slice state
-interface IMember {
+/* interface IMember {
   surname: string
   name: string
   fathername: string
-}
+} */
 
 interface IMembersState {
-  members: Array<IMember>
+  membersAll: Array<IMember>
 }
 
 
 // Define the initial state using that type
 const initialState: IMembersState = {
-  members: [],
+  membersAll: [],
 }
 
 export const membersSlice = createSlice({
@@ -27,7 +27,7 @@ export const membersSlice = createSlice({
       const members = action.payload.map((elem) => {
         return createMemberObject(removeExtraSpaces(elem))
       });
-      state.members.push(...members)
+      state.membersAll.push(...members)
     }
   },
 })
