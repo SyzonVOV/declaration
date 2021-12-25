@@ -9,6 +9,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { RootState } from '../app/store';
 import Button from '@mui/material/Button';
+import { DeclarationStatus } from './DeclarationStatus';
+import { getRandom } from '../helpers/helpers';
 
 export function ContentTable(): JSX.Element {
   const initialNamesParced = useAppSelector((state: RootState) => state.member.membersAll)
@@ -36,7 +38,10 @@ export function ContentTable(): JSX.Element {
               </TableCell>
               <TableCell align="right">{row.name}</TableCell>
               <TableCell align="right">{row.fathername}</TableCell>
-              <TableCell align="right">{'     '}</TableCell>
+              <TableCell align="right">
+                {/* <DeclarationStatus status={row.status} /> */}
+                <DeclarationStatus status={['none', 'good', 'bad'][getRandom(2)]} />
+              </TableCell>
               <TableCell align="right">{'     '}</TableCell>
               <TableCell align="right">
                 <Button variant="contained" component="span" color="secondary">
@@ -50,3 +55,4 @@ export function ContentTable(): JSX.Element {
     </TableContainer>
   );
 }
+

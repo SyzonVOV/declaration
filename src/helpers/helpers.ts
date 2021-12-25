@@ -14,6 +14,10 @@ export function removeExtraSpaces(string: string) {
     return string.replace(/\s+/g, ' ').trim()
 };
 
+export function getRandom(max: number) {
+    return Math.floor(Math.random() * (max + 1));
+}
+
 export function createPersonObject(string: string): IMember {
 
     let personArr = string.split(' ');
@@ -37,3 +41,5 @@ export interface IMember {
     fathername: string
     status: 'none' | 'good' | 'bad'
 }
+
+export type TDeclarationStatus = IMember['status']
